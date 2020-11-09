@@ -56,8 +56,8 @@ app.use('*', (request, response) => {
   response.status(404).send('sorry, not found!');
 });
 
-app.use('*', (request, response) => {
-  response.status(500).send('Sorry, something went wrong.')
+app.use('', (request, response) => {
+  response.status(500).send('Sorry, something went wrong.');
 });
 
 app.listen(PORT, () => {
