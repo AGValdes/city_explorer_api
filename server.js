@@ -16,28 +16,42 @@ app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 
 function handleLocation(request, response) {
-  try {
-    let geoData = require('./data/location.json');
-    let city = request.query.city;
-    let locationData = new Location(city, geoData);
-    response.send(locationData);
-  } catch (error) {
-    console.error(error);
+
+  if (request.query.city !== ''){
+    try {
+      let geoData = require('./data/location.json');
+      var city = request.query.city;
+      let locationData = new Location(city, geoData);
+      response.send(locationData);
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    response.status(500).send('Sorry, something went wrong');
   }
+
 }
 
 function handleWeather(request, response) {
-  try {
-    let weatherData = require('./data/weather.json');
-    let cityWeather = request.query.cityWeather;
-    let weatherDataObject = new Weather(cityWeather, weatherData);
-    let weatherArray = [];
-    weatherArray.push(weatherDataObject);
-    response.send(weatherArray);
-  } catch (error) {
-    console.error(error);
+
+  if (request.query.city !== ''){
+    try {
+      let weatherData = require('./data/weather.json');
+      let cityWeather = request.query.cityWeather;
+      let weatherDataObject = new Weather(cityWeather, weatherData);
+      let weatherArray = [];
+      weatherArray.push(weatherDataObject);
+      response.send(weatherArray);
+    } catch (error) {
+      console.error(error);
+    }
+  }else {
+    response.status(500).send('Sorry, something went wrong');
   }
+
 }
+
+
 
 function Location(city, geoData) {
   this.search_query = city;
@@ -52,12 +66,10 @@ function Weather(cityWeather, weatherData) {
   this.time = weatherData.data[0].valid_date;
 }
 
-// app.use('', (request, response) => {
-//   response.status(500).send('Sorry, something went wrong.');
-// });
 app.use('*', (request, response) => {
   response.status(404).send('sorry, not found!');
 });
+
 app.listen(PORT, () => {
   console.log(`server up: ${PORT}`);
 });
