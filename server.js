@@ -46,8 +46,8 @@ function Location(city, geoData) {
 
 function Weather(cityWeather, weatherData) {
   this.search_query = cityWeather;
-  this.weatherDescription = weatherData.data[0].weather.description;
-  this.highTemp = weatherData.data[0].high_temp;
+  this.forecast = weatherData.data[0].weather.description;
+  this.time = weatherData.data[0].datetime;
 }
 
 app.use('*', (request, response) => {
