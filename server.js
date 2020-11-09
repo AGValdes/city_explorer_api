@@ -22,7 +22,7 @@ function handleLocation(request, response) {
     let locationData = new Location(city, geoData);
     response.send(locationData);
   } catch (error) {
-    console.error(error);
+    console.error('status: 500', error);
   }
 }
 
@@ -31,9 +31,11 @@ function handleWeather(request, response) {
     let weatherData = require('./data/weather.json');
     let cityWeather = request.query.cityWeather;
     let weatherDataObject = new Weather(cityWeather, weatherData);
-    response.send(weatherDataObject);
+    let weatherArray = [];
+    weatherArray.push(weatherDataObject);
+    response.send(weatherArray);
   } catch (error) {
-    console.error(error);
+    console.error('status: 500', error);
   }
 }
 
@@ -53,6 +55,8 @@ function Weather(cityWeather, weatherData) {
 app.use('*', (request, response) => {
   response.status(404).send('sorry, not found!');
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`server up: ${PORT}`);
