@@ -52,14 +52,12 @@ function Weather(cityWeather, weatherData) {
   this.time = weatherData.data[0].valid_date;
 }
 
-app.use('*', (request, response) => {
-  response.status(404).send('sorry, not found!');
-});
-
 app.use('', (request, response) => {
   response.status(500).send('Sorry, something went wrong.');
 });
-
+app.use('*', (request, response) => {
+  response.status(404).send('sorry, not found!');
+});
 app.listen(PORT, () => {
   console.log(`server up: ${PORT}`);
 });
