@@ -46,7 +46,7 @@ function Location(city, geoData) {
 
 function Weather(cityWeather, weatherData) {
   this.search_query = cityWeather;
-  this.formatted_query = weatherData.data[0].weather.description;
+  this.weatherDescription = weatherData.data[0].weather.description;
   this.highTemp = weatherData.data[0].high_temp;
 }
 
