@@ -10,8 +10,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-// const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
-// const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 // const HIKING_API_KEY = process.env.HIKING_API_KEY;
 
 app.use(cors());
@@ -25,7 +25,7 @@ function handleLocation(req, res) {
   if (req.query.city !== ''){
     try {
       let city = req.query.city;
-      let url = `http://us1.locationiq.com/v1/search.php?key=pk.061a7e20bc8bd2fa0115808e4eb44be4&q=${city}&format=json&limit=1`;
+      let url = `http://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${city}&format=json&limit=1`;
       let locations = {};
 
       if (locations[url]){
@@ -49,25 +49,39 @@ function handleLocation(req, res) {
 
 }
 
-function handleWeather(request, response) {
-
-  if (request.query.city !== ''){
+function handleWeather(req, res) {
+  console.log('req.query', req.query);
+  if (req.query.city !== ''){
     try {
-      let weatherData = require('./data/weather.json');
-      let cityWeather = request.query.cityWeather;
+      let cityLatitude= req.query.latitude;
+      let cityLongitude= req.query.longitude;
+      let url = `http://api.weatherbit.io/v2.0/forecast/daily?key=${WEATHER_API_KEY}&lat=${cityLatitude}&lon=${cityLongitude}&format=json&days=8`;
+      let weather = {};
 
-      let eachDayArray = weatherData.data.map( data =>{
-        return new Weather(cityWeather, data);
-      })
-      response.send(eachDayArray);
+      if (weather[url]){
+        res.send(weather[url]);
+      } else {
+        superagent.get(url)
+          .then (dataFromAPI => {
+            const weatherData = dataFromAPI.body;
+            let eachDayArray = weatherData.data.map( data =>{
+              return new Weather(data);
+            });
+            weather[url] = eachDayArray;
+
+            res.json(eachDayArray);
+          });
+      }
     } catch (error) {
       console.error(error);
     }
-  }else {
-    response.status(500).send('Sorry, something went wrong');
+
+  } else {
+    res.status(500).send('Sorry, something went wrong');
   }
 
 }
+
 
 function Location(city, geoData) {
   this.search_query = city;
@@ -76,8 +90,7 @@ function Location(city, geoData) {
   this.longitude = geoData.lon;
 }
 
-function Weather(cityWeather, weatherData) {
-  this.search_query = cityWeather;
+function Weather(weatherData) {
   this.forecast = weatherData.weather.description;
   this.time = weatherData.valid_date;
 }
