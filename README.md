@@ -76,15 +76,15 @@ Actual time needed to complete: 22 min
 
 Estimate of time needed to complete: 80 min
 
-Start time: 
+Start time: 2:30pm
 
-Finish time: 
+Finish time: 3:41pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 71 min
 
 ### Number and name of feature: Trails from Location Name
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 80 min
 
 Start time: 
 
