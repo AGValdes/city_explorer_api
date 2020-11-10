@@ -52,5 +52,45 @@ Finish time: 3:30
 
 Actual time needed to complete: 1:10
 
+### Number and name of feature: .map() for Weather data
+
+Estimate of time needed to complete: 45 minutes
+
+Start time: 1:20pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
+### Number and name of feature: Latitude and Longitude from Location Name
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+### Number and name of feature: Weather info from Location
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+### Number and name of feature: Trails from Location Name
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
 
 
