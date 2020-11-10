@@ -38,10 +38,11 @@ function handleWeather(request, response) {
     try {
       let weatherData = require('./data/weather.json');
       let cityWeather = request.query.cityWeather;
-      let weatherDataObject = new Weather(cityWeather, weatherData);
-      let weatherArray = [];
-      weatherArray.push(weatherDataObject);
-      response.send(weatherArray);
+
+      let eachDayArray = weatherData.data.map( data =>{
+        return new Weather(cityWeather, data);
+      })
+      response.send(eachDayArray);
     } catch (error) {
       console.error(error);
     }
@@ -62,8 +63,8 @@ function Location(city, geoData) {
 
 function Weather(cityWeather, weatherData) {
   this.search_query = cityWeather;
-  this.forecast = weatherData.data[0].weather.description;
-  this.time = weatherData.data[0].valid_date;
+  this.forecast = weatherData.weather.description;
+  this.time = weatherData.valid_date;
 }
 
 app.use('*', (request, response) => {
