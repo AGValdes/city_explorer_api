@@ -58,23 +58,23 @@ Estimate of time needed to complete: 45 minutes
 
 Start time: 1:20pm
 
-Finish time: 
+Finish time: 2:25
 
-Actual time needed to complete: 
+Actual time needed to complete: 65 min
 
 ### Number and name of feature: Latitude and Longitude from Location Name
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 20 min
 
-Start time: 
+Start time: 2:30 pm
 
-Finish time: 
+Finish time: 2:52 pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 22 min
 
 ### Number and name of feature: Weather info from Location
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 80 min
 
 Start time: 
 
