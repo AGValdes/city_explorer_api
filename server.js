@@ -12,13 +12,15 @@ const PORT = process.env.PORT || 3000;
 
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
-// const HIKING_API_KEY = process.env.HIKING_API_KEY;
+const HIKING_API_KEY = process.env.HIKING_API_KEY;
 
 app.use(cors());
 
 app.get('/location', handleLocation);
 
 app.get('/weather', handleWeather);
+
+app.get('/trails', handleTrails);
 
 function handleLocation(req, res) {
 
@@ -50,7 +52,7 @@ function handleLocation(req, res) {
 }
 
 function handleWeather(req, res) {
-  console.log('req.query', req.query);
+
   if (req.query.city !== ''){
     try {
       let cityLatitude= req.query.latitude;
@@ -82,6 +84,39 @@ function handleWeather(req, res) {
 
 }
 
+function handleTrails (req, res) {
+
+  if (req.query.city !== ''){
+    try {
+      let cityLatitude= req.query.latitude;
+      let cityLongitude= req.query.longitude;
+      let url = `https://www.hikingproject.com/data/get-trails?key=${HIKING_API_KEY}&lat=${cityLatitude}&lon=${cityLongitude}&format=json`;
+
+      let hiking = {};
+
+      if (hiking[url]){
+        res.send(hiking[url]);
+      } else {
+        superagent.get(url)
+          .then (dataFromAPI => {
+            const hikeData = dataFromAPI.body;
+            let eachHikeArray = hikeData.trails.map( data =>{
+              return new Hike(data);
+            });
+            hiking[url] = eachHikeArray;
+
+            res.json(eachHikeArray);
+          });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+  } else {
+    res.status(500).send('Sorry, something went wrong');
+  }
+}
+
 
 function Location(city, geoData) {
   this.search_query = city;
@@ -93,6 +128,19 @@ function Location(city, geoData) {
 function Weather(weatherData) {
   this.forecast = weatherData.weather.description;
   this.time = weatherData.valid_date;
+}
+
+function Hike(hikeData) {
+  this.name = hikeData.name;
+  this.location = hikeData.location;
+  this.length = hikeData.length;
+  this.stars = hikeData.stars;
+  this.star_votes = hikeData.starVotes;
+  this.summary = hikeData.summary;
+  this.trail_url = hikeData.url;
+  this.conditions = hikeData.conditionDetails;
+  this.condition_date = hikeData.conditionDate;
+  this.condition_time = hikeData.conditionDate;
 }
 
 app.use('*', (request, response) => {
