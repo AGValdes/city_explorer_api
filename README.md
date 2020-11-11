@@ -86,11 +86,11 @@ Actual time needed to complete: 71 min
 
 Estimate of time needed to complete: 80 min
 
-Start time: 
+Start time: 3:42 pm
 
-Finish time: 
+Finish time: 4:02 pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 20 min
 
 
 
