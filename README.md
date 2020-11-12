@@ -123,3 +123,25 @@ Finish time: 4:38 pm
 
 Actual time needed to complete: 9 min
 
+
+### Number and name of feature: Movies
+
+Estimate of time needed to complete: 60 min
+
+Start time: 2:00 pm
+
+Finish time: 2:45 pm
+
+Actual time needed to complete: 45 min
+
+
+### Number and name of feature: Yelp
+
+Estimate of time needed to complete: 60 min
+
+Start time: 2:45 pm
+
+Finish time: 3:44 pm
+
+Actual time needed to complete: 59 min
+
