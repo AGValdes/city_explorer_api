@@ -4,7 +4,7 @@
 
 **Author**: Ameilia Valdes & Simon Panek
 
-**Version**: 1.0.1 
+**Version**: 1.0.2 
 
 ## Overview
 This app pulls in location data and weather data for a given city from other API's and displays them for the user.
@@ -17,9 +17,9 @@ This app is supported using Node.js and is deployed on Heroku.
 
 ## Change Log
 1.0.1 - App now pulls location data dynamically based on city name. Also populates weather forecast and hiking options based on the location from outside API's.
-
+1.0.2 - added a database to store previously searched location data.
 ## Credits and Collaborations
-Thanks to Bade, Skyler, & all other TA's!
+Thanks to Bade, Skyler, Chance & all other TA's!
 -->
 
 ### Number and name of feature: Location Feature
@@ -112,4 +112,14 @@ Start time: 3:00 pm
 Finish time: 4:29 pm
 
 Actual time needed to complete: 89 min
+
+### Number and name of feature: Deploy
+
+Estimate of time needed to complete: 30 min
+
+Start time: 4:29 pm
+
+Finish time: 4:38 pm
+
+Actual time needed to complete: 9 min
 
